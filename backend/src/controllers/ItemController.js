@@ -34,6 +34,7 @@ class ItemController {
       .store()
       .then(result => {
         let itemInsert = item.get();
+        app.get("io").emit("list-refresh", true);
         res.status(201).json({
           message: "Novo item cadastrado com sucesso!",
           data: itemInsert
@@ -88,6 +89,7 @@ class ItemController {
       .update(req.params.id)
       .then(result => {
         let itemUpdate = item.get();
+        app.get("io").emit("list-refresh", true);
         res.status(201).json({
           message: "Item atualizado com sucesso!",
           data: itemUpdate
@@ -109,6 +111,7 @@ class ItemController {
       .delete(id)
       .then(result => {
         if (result > 0) {
+          app.get("io").emit("list-refresh", true);
           res.status(201).json({
             status: true
           });

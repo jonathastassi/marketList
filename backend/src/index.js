@@ -14,6 +14,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("jwt", jwt);
 
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+io.on("connection", socket => {
+  console.log("User connected");
+  console.log(socket);
+});
+app.set("io", io);
+
 app.use("*", (req, res, next) => {
   if (
     req.originalUrl == "/api/v1/user/login" ||
