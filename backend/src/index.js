@@ -34,13 +34,15 @@ app.use("*", (req, res, next) => {
         if (err) {
           res.status(401).send({ message: "Não autorizado!" });
         } else {
-          req.user_id = user;
+          req.user_id = decoded.user;
           next();
         }
       });
     }
   }
 });
+
+app.use("/uploads", express.static("uploads"));
 
 consign({ cwd: "src" })
   .include("database")

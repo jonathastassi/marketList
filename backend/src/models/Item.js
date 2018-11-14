@@ -76,60 +76,95 @@ class Item {
       (this.picture = i.picture);
   }
 
-  all() {}
+  all() {
+    let self = this;
+    return new Promise(function(resolve, reject) {
+      self._conn.query(
+        "select * from items where user_id = ? order by purchased",
+        self._user_id,
+        (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+      self._conn.end();
+    });
+  }
 
-  store() {}
+  store() {
+    let self = this;
+    return new Promise(function(resolve, reject) {
+      self._conn.query("insert into items set ?", self.get(), (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          self.setId(result.insertId || "");
+          resolve(result);
+        }
+      });
+      self._conn.end();
+    });
+  }
 
-  find(id) {}
+  find(id) {
+    let self = this;
+    return new Promise(function(resolve, reject) {
+      self._conn.query(
+        "select * from items where user_id = ? and id = ? order by purchased",
+        [self._user_id, id],
+        (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+      self._conn.end();
+    });
+  }
 
-  update(id) {}
+  update(id) {
+    let self = this;
+    self.setId(id);
+    return new Promise(function(resolve, reject) {
+      self._conn.query(
+        "update items set ? where id = ?",
+        [self.get(), id],
+        (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            if (result.affectedRows > 0) {
+              resolve(result);
+            }
+            reject("Nenhum item foi atualizado!");
+          }
+        }
+      );
+      self._conn.end();
+    });
+  }
 
-  delete() {}
-
-  //   store() {
-  //     let self = this;
-  //     return new Promise(function(resolve, reject) {
-  //       self._conn.query(
-  //         "insert into users set ?",
-  //         self.get(true),
-  //         (err, result) => {
-  //           if (err) {
-  //             reject(err);
-  //           } else {
-  //             self.setId(result.insertId || "");
-  //             resolve(result);
-  //           }
-  //         }
-  //       );
-  //       self._conn.end();
-  //     });
-  //   }
-
-  //   login() {
-  //     let self = this;
-  //     return new Promise(function(resolve, reject) {
-  //       self._conn.query(
-  //         "select * from users where email = ?",
-  //         self.getEmail(),
-  //         (err, result) => {
-  //           if (err) {
-  //             reject(err);
-  //           } else if (!result || result.length <= 0) {
-  //             reject("Usuário não encontrado!");
-  //           } else {
-  //             let u = result[0];
-  //             if (bcrypt.compareSync(self.getPassword(), u.password)) {
-  //               self.fill(u);
-  //               resolve({ data: self.get() });
-  //             } else {
-  //               reject("Senha Inválida!");
-  //             }
-  //           }
-  //         }
-  //       );
-  //       self._conn.end();
-  //     });
-  //   }
+  delete(id) {
+    let self = this;
+    return new Promise(function(resolve, reject) {
+      self._conn.query("delete from items where id = ?", id, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          if (result.affectedRows > 0) {
+            resolve(result.affectedRows);
+          }
+          reject("Nenhum item foi deletado!");
+        }
+      });
+      self._conn.end();
+    });
+  }
 }
 
 module.exports = function() {
