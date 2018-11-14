@@ -1,12 +1,15 @@
 # Para rodar o backend
 
-## Crie um banco de dados no Mysql com nome de db_marketlist 
+### Execute o comando
+npm install
+
+### Crie um banco de dados no Mysql com nome de db_marketlist 
 
 create database db_marketlist
 
-## Acesse o .env dentro da pasta backend com as informações de acesso do MySql
+### Acesse o .env dentro da pasta backend com as informações de acesso do MySql
 
-## Execute o script abaixo para criar a estrutura do banco de dados
+### Execute o script abaixo para criar a estrutura do banco de dados
 
 ### Comando para criar o banco de dados:
 
@@ -99,3 +102,6 @@ UNLOCK TABLES;
 -- Dump completed on 2018-11-14  9:13:35
 
 ```
+
+### Após tudo isso, rode o comando
+npm run dev
