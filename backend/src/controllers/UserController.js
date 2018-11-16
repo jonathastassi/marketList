@@ -1,7 +1,7 @@
 class UserController {
   register(req, res) {
     if (!req.body.name || !req.body.email || !req.body.password) {
-      res.status(500).json({ message: "Preencha os dados corretamente!" });
+      res.status(500).send({ message: "Preencha os dados corretamente!" });
     }
 
     let app = req.app;
@@ -21,7 +21,7 @@ class UserController {
       })
       .catch(err => {
         if (err.code == "ER_DUP_ENTRY") {
-          res.status(500).json({
+          res.status(500).send({
             message: `Ocorreu um erro ao criar a conta de usuário! | E-mail já utilizado`
           });
         } else {
