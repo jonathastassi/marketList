@@ -80,7 +80,7 @@ class Item {
     let self = this;
     return new Promise(function(resolve, reject) {
       self._conn.query(
-        "select * from items where user_id = ? order by purchased",
+        "select * from items where user_id = ? order by purchased, name",
         self._user_id,
         (err, result) => {
           if (err) {

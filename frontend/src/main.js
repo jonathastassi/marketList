@@ -11,9 +11,9 @@ import axios from "axios";
 let user = JSON.parse(localStorage.getItem("user"));
 window.axios = axios;
 if (user && user.token) {
-  window.axios.defaults.headers.common["Authorization"] =
-    "Bearer " + user.token;
+  window.axios.defaults.headers.common["Authorization"] = user.token;
 }
+Vue.prototype.axios = window.axios;
 
 Vue.use(Vuetify);
 
@@ -26,5 +26,3 @@ new Vue({
   components: { App },
   template: "<App/>"
 });
-
-Vue.prototype.axios = window.axios;

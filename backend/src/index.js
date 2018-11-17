@@ -33,7 +33,7 @@ app.use("*", (req, res, next) => {
       req.body.token ||
       req.query.token ||
       req.headers["x-access-token"] ||
-      req.headers["Authorization"];
+      req.headers["authorization"];
 
     if (!token) {
       res.status(401).send({ message: "Não autorizado!" });
