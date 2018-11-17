@@ -21,7 +21,7 @@ export default {
             return item.purchased == 0;
           });
           self.bought = data.filter(item => {
-            return item.purchased == 0;
+            return item.purchased == 1;
           });
         })
         .catch(error => {
