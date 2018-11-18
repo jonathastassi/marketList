@@ -1,5 +1,7 @@
 # Para rodar o backend
 
+### Projeto desenvolvido utilizando Node, Mysql e Socket IO.
+
 ### Execute o comando
 npm install
 
