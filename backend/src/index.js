@@ -22,6 +22,8 @@ io.on("connection", socket => {
 });
 app.set("io", io);
 
+app.use("/uploads", express.static("uploads"));
+
 app.use("*", (req, res, next) => {
   if (
     req.originalUrl == "/api/v1/user/login" ||
@@ -49,8 +51,6 @@ app.use("*", (req, res, next) => {
     }
   }
 });
-
-app.use("/uploads", express.static("uploads"));
 
 consign({ cwd: "src" })
   .include("database")

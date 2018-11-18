@@ -82,8 +82,11 @@ class ItemController {
     item.setDescription(req.body.description);
     item.setPrice(req.body.price);
     item.setPurchased(req.body.purchased);
-    item.setPurchaseDate(req.body.purchase_date);
-    item.setPicture(req.file.path);
+    let purchase_date = req.body.purchased ? new Date() : null;
+    item.setPurchaseDate(purchase_date);
+    item.setPicture(
+      req.file && req.file.path ? req.file.path : req.body.picture
+    );
 
     item
       .update(req.params.id)
