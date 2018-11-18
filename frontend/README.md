@@ -1,21 +1,10 @@
-# marketlist
+# Para rodar o frontend
 
-> A Vue.js project
+### Projeto desenvolvido utilizando Vue com Vuetify
 
-## Build Setup
-
-``` bash
-# install dependencies
+### Execute o comando
 npm install
 
-# serve with hot reload at localhost:8080
+### Após a instalação das dependências, rode o comando
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
