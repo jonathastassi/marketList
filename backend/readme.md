@@ -1,5 +1,7 @@
 # Para rodar o backend
 
+### Projeto desenvolvido utilizando Node, Mysql e Socket IO.
+
 ### Execute o comando
 npm install
 
@@ -50,7 +52,7 @@ CREATE TABLE `items` (
   PRIMARY KEY (`id`),
   KEY `fk_user_id_idx` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +61,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (12,39,'Sabonejjtecc dqwefwe',NULL,NULL,0,NULL,NULL),(14,39,'Sabonejjtecc dqwefwe',NULL,NULL,0,NULL,NULL),(17,39,'Jonathasdd',NULL,NULL,NULL,NULL,'uploads/picture-1542161614929.png');
+INSERT INTO `items` VALUES (21,61,'csdkfem','felwkjfw',34.30,0,NULL,'uploads/picture-1542567513236.png');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +79,7 @@ CREATE TABLE `users` (
   `password` varchar(191) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +88,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (22,'nome','yuffffff','$2b$10$T7ozneKMyG6DM1KYHC6KBOQI0fVp3ORUXMlyQGRZOFIwhHD9TdAr6'),(39,'123','jonathastassi@hotmail.com','$2b$10$QqYkcDCh25N.qX7IzB9/cOJRqy964.aCM4zk1J27v5F/e4ZbvIY.6');
+INSERT INTO `users` VALUES (22,'nome','yuffffff','$2b$10$T7ozneKMyG6DM1KYHC6KBOQI0fVp3ORUXMlyQGRZOFIwhHD9TdAr6'),(39,'123','jonathastassi@hotmail.com','$2b$10$QqYkcDCh25N.qX7IzB9/cOJRqy964.aCM4zk1J27v5F/e4ZbvIY.6'),(40,'','','$2b$10$w0FFk1GlVKlfVUlvwBgXme/lgykcIn0fzOnWXL/btgctCR9zRQq/m'),(61,'Jonathas','jonathastassi@hotmail.com2','$2b$10$nNbjV3ntGkrxyy2pFaYDR.XVi3qAJ5RPPasEZhOJ.D.JHQItWiZ3a'),(63,'fwefFEW','FESKFLJW@DEKWLFM','$2b$10$daCmkycRdP3k2ehk6JHmEOAEeGRwLbVApbsldl7IGoG6GBaynqgkC');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -99,8 +101,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-14  9:13:35
-
+-- Dump completed on 2018-11-18 17:44:30
 ```
 
 ### Após tudo isso, rode o comando
