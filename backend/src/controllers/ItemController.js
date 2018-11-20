@@ -28,7 +28,9 @@ class ItemController {
     item.setDescription(req.body.description);
     item.setPrice(req.body.price);
     item.setPurchased(0);
-    item.setPicture(req.file.path);
+
+    item.setPicture(req.file && req.file.path ? req.file.path : null);
+    // item.setPicture(req.file.path);
 
     item
       .store()

@@ -15,8 +15,22 @@ app.use(bodyParser.json());
 app.set("jwt", jwt);
 
 const http = require("http").Server(app);
-const io = require("socket.io")(http);
-io.on("connection", socket => {
+const io = require("socket.io")(http, { origins: "*:*" });
+
+io.use(function(socket, next) {
+  if (socket.handshake.query && socket.handshake.query.token) {
+    jwt.verify(socket.handshake.query.token, process.env.JWT_KEY, function(
+      err,
+      decoded
+    ) {
+      if (err) return next(new Error("Authentication error"));
+      socket.decoded = decoded;
+      next();
+    });
+  } else {
+    next(new Error("Authentication error"));
+  }
+}).on("connection", socket => {
   console.log("User connected");
   console.log(socket);
 });
@@ -25,6 +39,7 @@ app.set("io", io);
 app.use("/uploads", express.static("uploads"));
 
 app.use("*", (req, res, next) => {
+  // console.log(req.originalUrl);
   if (
     req.originalUrl == "/api/v1/user/login" ||
     req.originalUrl == "/api/v1/user/register"
