@@ -34,9 +34,9 @@ window.axios.interceptors.response.use(
   response => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user && user.token) {
-      response.headers.Authorization = user.token;
+      // response.headers.Authorization = user.token;
       // response.headers.authorization = user.token;
-      window.axios.defaults.headers.common["Authorization"] = user.token;
+      // window.axios.defaults.headers.common["Authorization"] = user.token;
       // window.axios.defaults.headers.common["authorization"] = user.token;
     }
     return response;
@@ -44,8 +44,8 @@ window.axios.interceptors.response.use(
   error => {
     let errorResponse = error.response;
     if (errorResponse.status === 401) {
-      localStorage.removeItem("user");
-      router.push({ name: "Login" });
+      // localStorage.removeItem("user");
+      // router.push({ name: "Login" });
     }
     return Promise.reject(error);
   }
