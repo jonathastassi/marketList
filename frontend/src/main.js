@@ -34,6 +34,7 @@ window.axios.interceptors.response.use(
   response => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (user && user.token) {
+      // window.axios.defaults.headers.common["Authorization"] = user.token;
       // response.headers.Authorization = user.token;
       // response.headers.authorization = user.token;
       // window.axios.defaults.headers.common["Authorization"] = user.token;

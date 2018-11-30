@@ -53,6 +53,7 @@ export default {
           user.token = result.data.token;
           if (user.token) {
             localStorage.setItem("user", JSON.stringify(user));
+              window.axios.defaults.headers.common["Authorization"] = user.token;
           }
         })
         .then(() => {
