@@ -2,6 +2,8 @@
 
 ### Projeto desenvolvido utilizando Node, Mysql e Socket IO.
 
+### Entra na pasta backend pelo terminal
+
 ### Execute o comando
 npm install
 
